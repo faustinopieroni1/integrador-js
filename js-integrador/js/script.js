@@ -1,6 +1,12 @@
 //Flujo de datos 
 
-//Mostrar productos -> cantidad de productos/Confirmacion de compra -> calculo de precios -> cantidad total de la compra
+//1-Mostrar productos -> 
+//2-cantidad de productos -> 
+//3-calculo de precios -> 
+//4-control de stock ->
+//5-Si hay stock muestra el precio->
+//6-mensajes post servicio.
+
 
 let productoA = "Mesa"
 let precioProductoA = 500
@@ -14,68 +20,63 @@ let productoC = "Lampara"
 let precioProductoC = 50
 let stockProductoC = 10
 
+let precioTotal = 0 //-> Asigno la variable afuera del ciclo para poder utilizarla dentro de el y para poder almacenar valores dentro de ella y citarla fuera del ciclo.
 
-//1-Mostrar y seleccionar Productos
+let opcion = prompt("Bienvenido\nENTER para continuar \nESC para salir")
 
-let acepteCompra = prompt("Comrar: \n1-Mesa \n2-Silla \n3-Lampara")
+while (opcion != "ESC") {
+    //1-Mostrar productos
+    opcion = prompt("Comrar: \n1-Mesa \n2-Silla \n3-Lampara \nESC")
 
-//2-Cantidad de productos/Confirmacion de compra
+    //2-Cantidad de productos
+    if ((opcion == "Mesa") || (opcion == "1")) {
+        let cantidadProductoA = prompt("Ingrese cantidad de: " + productoA + " que desea comprar")
+        //3-Calculo de precios
+        //4-control de stock 
+        if (cantidadProductoA <= stockProductoA) {
+            precioTotal = precioTotal + (cantidadProductoA * precioProductoA) //-> Sumo el nuevo precio total al viejo precio total para que los valores se vayan sumando 
+        }
+        else {
+            alert("Actualmente tenemos: " + stockProductoA + " unidades disponibles")
+        }
+    }
 
-if (acepteCompra == "Mesa") {
-    let cantidadProductoA = prompt("Ingrese cantidad de: " + productoA + " que desea comprar")
-    //Calculo de precios
-    let precioA = cantidadProductoA * precioProductoA
-    //Control de stock (10)
-    if (cantidadProductoA <= stockProductoA) {
-        alert("El precio total es de: " + precioA)
-    } else {
-        alert("No contamos con esa cantidad, porfavor reduzca las unidades para continuar la compra")
+    //2-Cantidad de productos
+    else if ((opcion == "Silla") || (opcion == "2")) {
+        let cantidadProductoB = prompt("Ingrese cantidad de: " + productoB + " que desea comprar")
+        //3-Calculo de precios
+        //4-control de stock 
+        if (cantidadProductoB <= stockProductoB) {
+            precioTotal = precioTotal + (cantidadProductoB * precioProductoB)
+        }
+        else {
+            alert("Actualmente tenemos: " + stockProductoB + " unidades disponibles")
+        }
+    }
+
+    //2-Cantidad de productos
+    else if ((opcion == "Lampara") || (opcion == "3")) {
+        let cantidadProductoC = prompt("Ingrese cantidad de: " + productoC + " que desea comprar")
+        //3-Calculo de precios
+        //4-control de stock 
+        if (cantidadProductoC <= stockProductoC) {
+            precioTotal = precioTotal + (cantidadProductoC * precioProductoC)
+        }
+        else {
+            alert("Actualmente tenemos: " + stockProductoC + " unidades disponibles")
+        }
     }
 }
 
-//2-Cantidad de productos/Confirmacion de compra
-
-else if (acepteCompra == "Silla") {
-    let cantidadProductoB = prompt("Ingrese cantidad de: " + productoB + " que desea comprar")
-    //Calculo de precios
-    let precioB = cantidadProductoB * precioProductoB
-    //Control de stock (10)
-    if (cantidadProductoB <= stockProductoB) {
-        alert("El precio total es de: " + precioB)
-    } else {
-        alert("No contamos con esa cantidad, porfavor reduzca las unidades para continuar la compra")
-    }
+//5- Si hay stock se va a mostrar el precio
+if (precioTotal != 0) {
+    alert("El precio total es de: " + precioTotal)//-> Uso de la variable glogal que declare al principo y adquirio valores en el bucle 
 }
 
-//2-Cantidad de productos/Confirmacion de compra
-
-else if (acepteCompra == "Lampara") {
-    let cantidadProductoC = prompt("Ingrese cantidad de: " + productoC + " que desea comprar")
-    //Calculo de precios
-    let precioC = cantidadProductoC * precioProductoC
-    //Control de stock (10)
-    if (cantidadProductoC <= stockProductoC) {
-        alert("El precio total es de: " + precioC)
-    } else {
-        alert("No contamos con esa cantidad, porfavor reduzca las unidades para continuar la compra")
-    }
-}
-// Mensajes post servicio
-
-//Si "acepte compra no es una de las opciones especificadas"
-
-else if (acepteCompra != "") {
-    alert("Producto sin stock")
-}
-
-//Si no es ninguna de las opciones y no se escribe nada (queda en blanco)
-
-else {
-    alert("Compra No Realizada")
-}
-
-// Si acepte compra es alguna de las opciones especificadas sale un alert
-
-if ((acepteCompra == "Mesa") || ((acepteCompra == "Silla") || (acepteCompra == "Lampara"))) {
+//6-mensajes post servicio
+if (precioTotal != 0) {
     alert("¡Gracias por su compra!")
+}
+if (precioTotal == 0) {
+    alert("¡Vuelva Pronto!")
 }

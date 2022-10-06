@@ -1,4 +1,4 @@
-//Flujo de datos 
+/* //Flujo de datos 
 
 //1-Mostrar productos -> 
 //2-cantidad de productos -> 
@@ -79,4 +79,111 @@ if (precioTotal != 0) {
 }
 if (precioTotal == 0) {
     alert("¡Vuelva Pronto!")
+} */
+
+
+
+
+
+
+
+
+
+
+//Login
+alert("Bienvenido, a continuacion ingrese su usuario")
+let nombre = prompt("Ingrese su nombre de usuario")
+let contraseña = prompt("Ingrese su contraseña")
+
+if ((nombre == "") && (contraseña == "")) {  // Verificacion para entrar (en blanco)
+
+
+
+
+    //Flujo de datos 
+
+    //1-Mostrar productos -> 
+    //2-cantidad de productos -> 
+    //3-calculo de precios -> 
+    //4-control de stock ->
+    //5-Si hay stock muestra el precio->
+    //6-mensajes post servicio.
+
+function Producto (nombre, precio, stock){
+    this.nombre = nombre;
+    this.precio = precio;
+    this.stock = stock
+}                  
+                                                                       //--->Uso de funcion Constructora de objetos
+let productoA = new Producto ("Whey protein truemade 1kg", 200, 10);
+let productoB = new Producto ("Creatina micronizada ENA 300gr", 100, 10);
+let productoC = new Producto ("Ultra mass ENA 1500gr", 50, 10);
+
+
+    let precioTotal = 0 //-> Asigno la variable precio total afuera del ciclo para poder utilizarla dentro de el y para poder almacenar valores dentro de ella y citarla fuera del ciclo.
+
+    function calculoPrecio(cantidad, precio) { // Decalracion de funcion con parametros
+        precioTotal += (cantidad * precio) // El "+=" sirve para sumarle un nuevo valor al valor actual de la variable y se va sobre escribiendo
+    }
+
+    let opcion = prompt("Bienvenido a Like Nutrition.cba\nENTER para continuar \nESC para salir")
+
+    while (opcion != "ESC") {
+        //1-Mostrar productos
+        opcion = prompt("Agregar al carrito: \n1- Whey protein truemade 1kg\n2- Creatina micronizada ENA 300gr\n3- Ultra mass ENA 1500gr\nESC- Para salir")
+
+        //2-Cantidad de productos
+        if ((opcion == "Whey protein truemade 1kg") || (opcion == "1")) {
+            let cantidadProductoA = prompt("Ingrese cantidad de: " + productoA.nombre + " que desea comprar")
+            //3-Calculo de precios
+            //4-control de stock 
+            if (cantidadProductoA <= productoA.stock) {
+                calculoPrecio(cantidadProductoA, productoA.precio)// ->Llamado de funcion (aca se debe poner al valor)
+            }
+            else {
+                alert("Actualmente tenemos: " + productoA.stock + " unidades disponibles")
+            }
+        }
+
+        //2-Cantidad de productos
+        else if ((opcion == "Creatina micronizada ENA 300gr") || (opcion == "2")) {
+            let cantidadProductoB = prompt("Ingrese cantidad de: " + productoB.nombre + " que desea comprar")
+            //3-Calculo de precios
+            //4-control de stock 
+            if (cantidadProductoB <= productoB.stock) {
+                calculoPrecio(cantidadProductoB, productoB.precio)// ->Llamado de funcion (aca se debe poner al valor)
+            }
+            else {
+                alert("Actualmente tenemos: " + productoB.stock + " unidades disponibles")
+            }
+        }
+
+        //2-Cantidad de productos
+        else if ((opcion == "Ultra mass ENA 1500g") || (opcion == "3")) {
+            let cantidadProductoC = prompt("Ingrese cantidad de: " + productoC.nombre + " que desea comprar")
+            //3-Calculo de precios
+            //4-control de stock 
+            if (cantidadProductoC <= productoC.stock) {
+                calculoPrecio(cantidadProductoC, productoC.precio)// ->Llamado de funcion (aca se debe poner al valor)
+            }
+            else {
+                alert("Actualmente tenemos: " + productoC.stock + " unidades disponibles")
+            }
+        }
+    }
+
+    //5- Si hay stock se va a mostrar el precio
+    if (precioTotal != 0) {
+        alert("El precio total es de: " + precioTotal)//-> Uso de la variable glogal que declare al principo y adquirio valores en el bucle 
+
+        //6-mensajes post servicio
+        alert("¡Gracias por su compra!")
+
+    }
+    else {
+        alert("¡Vuelva Pronto!")
+    }
+}
+else {
+    alert("Error, ingrse usuario y contraseña validos")
 }

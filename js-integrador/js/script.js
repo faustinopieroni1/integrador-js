@@ -109,16 +109,30 @@ if ((nombre == "") && (contraseña == "")) {  // Verificacion para entrar (en bl
     //5-Si hay stock muestra el precio->
     //6-mensajes post servicio.
 
-function Producto (nombre, precio, stock){
-    this.nombre = nombre;
-    this.precio = precio;
-    this.stock = stock
-}                  
-                                                                       //--->Uso de funcion Constructora de objetos
-let productoA = new Producto ("Whey protein truemade 1kg", 200, 10);
-let productoB = new Producto ("Creatina micronizada ENA 300gr", 100, 10);
-let productoC = new Producto ("Ultra mass ENA 1500gr", 50, 10);
+    function Producto(nombre, precio, stock) {      //--->Uso de funcion Constructora de objetos
+        this.nombre = nombre;
+        this.precio = precio;
+        this.stock = stock
+    }
 
+    let productoA = new Producto("1- Whey protein truemade 1kg", 200, 10);
+    let productoB = new Producto("2- Creatina micronizada ENA 300gr", 100, 10);    //--->Objetos construidos
+    let productoC = new Producto("3- Ultra mass ENA 1500gr", 50, 10);
+    let productoD = new Producto("4- Preentreno C4 300gr", 70, 0);
+
+    //---USO DE ARRAYS----
+
+    let productos = [productoA, productoB, productoC, productoD]    // ---> Lista de objetos (Array)
+
+    let listaProductos = []
+
+    for (let producto of productos) { //->Ejecutar push de todos indices de "productos" a "lista de productos" de los nombres que estenen "productos" SI EL STOCK ES + 0 (si es que hay stock)
+        if (producto.stock > 0){
+            listaProductos.push(producto.nombre)
+        }
+    }
+
+    //-------------------------------------
 
     let precioTotal = 0 //-> Asigno la variable precio total afuera del ciclo para poder utilizarla dentro de el y para poder almacenar valores dentro de ella y citarla fuera del ciclo.
 
@@ -130,7 +144,7 @@ let productoC = new Producto ("Ultra mass ENA 1500gr", 50, 10);
 
     while (opcion != "ESC") {
         //1-Mostrar productos
-        opcion = prompt("Agregar al carrito: \n1- Whey protein truemade 1kg\n2- Creatina micronizada ENA 300gr\n3- Ultra mass ENA 1500gr\nESC- Para salir")
+        opcion = prompt("Agregar al carrito: \n" + listaProductos.join("\n") + "\n-ESC para avanzar")
 
         //2-Cantidad de productos
         if ((opcion == "Whey protein truemade 1kg") || (opcion == "1")) {

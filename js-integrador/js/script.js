@@ -118,19 +118,15 @@ if ((nombre == "") && (contraseña == "")) {  // Verificacion para entrar (en bl
     let productoA = new Producto("1- Whey protein truemade 1kg", 200, 10);
     let productoB = new Producto("2- Creatina micronizada ENA 300gr", 100, 10);    //--->Objetos construidos
     let productoC = new Producto("3- Ultra mass ENA 1500gr", 50, 10);
-    let productoD = new Producto("4- Preentreno C4 300gr", 70, 0);
+    let productoD = new Producto("4- Preentreno C4 300gr", 70, 1);
 
     //---USO DE ARRAYS----
 
     let productos = [productoA, productoB, productoC, productoD]    // ---> Lista de objetos (Array)
 
-    let listaProductos = []
+    let listaProductosConStock = productos.filter((parametro) => parametro.stock > 0)  // Array solo tendra productos  c/stock, gracias a metodo .filter()
 
-    for (let producto of productos) { //->Ejecutar push de todos indices de "productos" a "lista de productos" de los nombres que estenen "productos" SI EL STOCK ES + 0 (si es que hay stock)
-        if (producto.stock > 0){
-            listaProductos.push(producto.nombre)
-        }
-    }
+    let listaProductos = listaProductosConStock.map ((parametro)=> parametro.nombre)// Array tendra propiedad .nombre de "listaProductos"
 
     //-------------------------------------
 
@@ -144,7 +140,7 @@ if ((nombre == "") && (contraseña == "")) {  // Verificacion para entrar (en bl
 
     while (opcion != "ESC") {
         //1-Mostrar productos
-        opcion = prompt("Agregar al carrito: \n" + listaProductos.join("\n") + "\n-ESC para avanzar")
+        opcion = prompt("Agregar al carrito: \n" + listaProductos.join("\n") + "\n-ESC para avanzar")  //Uso del metodo .join()
 
         //2-Cantidad de productos
         if ((opcion == "Whey protein truemade 1kg") || (opcion == "1")) {
